@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Instead() {
   return (
@@ -23,15 +24,16 @@ export default function Instead() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="relative h-[70vh] bg-gradient-to-br from-pale-stone via-aged-brass/20 to-moss/10"
+        className="relative h-[70vh]"
       >
-        {/* Placeholder for real photo - gradient with texture */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-moss/40">
-            <p className="text-sm uppercase tracking-wider">Project photography</p>
-            <p className="text-xs mt-2">Calm, functional space</p>
-          </div>
-        </div>
+        {/* Real project photo */}
+        <Image
+          src="/images/project-1.jpg"
+          alt="Sai Ying Pun studio apartment with Japanese-inspired design"
+          fill
+          className="object-cover"
+          priority
+        />
 
         {/* Caption - specific, not generic */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-forest/90 to-transparent p-8 md:p-12">
