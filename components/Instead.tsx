@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRef, useEffect } from "react";
 
 const projects = [
   {
@@ -49,6 +50,55 @@ const projects = [
 ];
 
 export default function Instead() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let scrollPosition = 0;
+    let animationFrameId: number;
+    let isPaused = false;
+
+    const autoScroll = () => {
+      if (!isPaused && scrollContainer) {
+        scrollPosition += 0.5;
+        
+        if (scrollPosition >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+          scrollPosition = 0;
+        }
+        
+        scrollContainer.scrollLeft = scrollPosition;
+      }
+      animationFrameId = requestAnimationFrame(autoScroll);
+    };
+
+    const handleMouseEnter = () => {
+      isPaused = true;
+    };
+
+    const handleMouseLeave = () => {
+      isPaused = false;
+    };
+
+    const handleTouchStart = () => {
+      isPaused = true;
+    };
+
+    scrollContainer.addEventListener("mouseenter", handleMouseEnter);
+    scrollContainer.addEventListener("mouseleave", handleMouseLeave);
+    scrollContainer.addEventListener("touchstart", handleTouchStart);
+
+    animationFrameId = requestAnimationFrame(autoScroll);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      scrollContainer.removeEventListener("mouseenter", handleMouseEnter);
+      scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
+      scrollContainer.removeEventListener("touchstart", handleTouchStart);
+    };
+  }, []);
+
   return (
     <section className="relative py-32">
       <div className="max-w-7xl mx-auto px-6 mb-16">
@@ -66,7 +116,10 @@ export default function Instead() {
       </div>
 
       <div className="relative">
-        <div className="overflow-x-auto overflow-y-hidden scrollbar-hide">
+        <div 
+          ref={scrollRef}
+          className="overflow-x-auto overflow-y-hidden scrollbar-hide cursor-grab active:cursor-grabbing"
+        >
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -109,7 +162,7 @@ export default function Instead() {
 
       <div className="text-center mt-12 px-6">
         <p className="text-sm text-moss">
-          Scroll to see more →
+          Hover to pause · Drag to explore
         </p>
       </div>
     </section>
