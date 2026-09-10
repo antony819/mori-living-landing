@@ -9,9 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        sage: "#A8B89E",
-        charcoal: "#2D2D2D",
-        "warm-wood": "#D4A574",
+        'warm-paper': '#FDFCFB',
+        'forest': '#2B3A2E',
+        'aged-brass': '#C8A882',
+        'pale-stone': '#E8E4DC',
+        'moss': '#4A5D4F',
+        'ink': '#1A1F1C',
+      },
+      fontFamily: {
+        display: ['Instrument Serif', 'Georgia', 'serif'],
+        body: ['Inter', '-apple-system', 'system-ui', 'sans-serif'],
       },
     },
   },

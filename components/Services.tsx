@@ -2,55 +2,59 @@
 
 import { motion } from "framer-motion";
 
-const services = [
+const benefits = [
   {
-    title: "Full Design Service",
-    description: "From concept sketches to final installation. One designer guides your entire journey.",
-    icon: "✏️",
+    label: "One designer",
+    detail: "Start to finish",
+    description: "Your designer manages everything: layout, materials, contractors, timeline. One point of contact, no handoffs.",
   },
   {
-    title: "Quality Renovation",
-    description: "Licensed contractors, premium materials, and meticulous execution. No shortcuts.",
-    icon: "🔨",
+    label: "Fixed price",
+    detail: "No surprises",
+    description: "HK$400K–1.2M depending on scope. The quote we give is the price you pay. No hidden fees, no change orders.",
   },
   {
-    title: "Space Optimization",
-    description: "Maximize every inch of your compact Hong Kong home with smart Japanese design.",
-    icon: "📐",
+    label: "8–12 weeks",
+    detail: "Realistic timeline",
+    description: "Design takes 2 weeks. Construction takes 6–10. We tell you exactly what happens when, and we stick to it.",
   },
 ];
 
 export default function Services() {
   return (
-    <section className="py-20 px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-32 px-6 bg-pale-stone">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-light mb-4">
-            Design + Build, Simplified
+          <h2 className="font-display text-4xl md:text-5xl text-forest mb-6">
+            How it works
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Everything you need for your renovation, managed by one trusted team
+          <p className="text-lg text-moss breathing max-w-2xl">
+            Most people renovating for the first time don't know what to expect. Here's what you're paying for.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+        <div className="space-y-16">
+          {benefits.map((benefit, index) => (
             <motion.div
-              key={service.title}
+              key={benefit.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-gray-50 p-8 rounded-lg hover:shadow-lg transition-shadow"
+              transition={{ delay: index * 0.15 }}
+              className="border-l-2 border-aged-brass pl-8"
             >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-medium mb-3">{service.title}</h3>
-              <p className="text-gray-600">{service.description}</p>
+              <div className="mb-3">
+                <span className="font-display text-3xl text-forest">{benefit.label}</span>
+                <span className="text-aged-brass ml-4 text-lg">{benefit.detail}</span>
+              </div>
+              <p className="text-base text-moss breathing max-w-xl">
+                {benefit.description}
+              </p>
             </motion.div>
           ))}
         </div>

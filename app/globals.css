@@ -2,19 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
-  --color-sage: #A8B89E;
-  --color-charcoal: #2D2D2D;
-  --color-warm-wood: #D4A574;
+  --warm-paper: #FDFCFB;
+  --forest: #2B3A2E;
+  --aged-brass: #C8A882;
+  --pale-stone: #E8E4DC;
+  --moss: #4A5D4F;
+  --ink: #1A1F1C;
 }
 
 body {
-  color: var(--color-charcoal);
-  background: #FAFAFA;
+  color: var(--ink);
+  background: var(--warm-paper);
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.font-display {
+  font-family: 'Instrument Serif', Georgia, serif;
+  letter-spacing: -0.02em;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .breathing {
+    line-height: 1.75;
   }
 }

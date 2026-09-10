@@ -9,7 +9,7 @@ type FormData = {
   phone: string;
   flatSize: string;
   startDate: string;
-  budget: string;
+  budget?: string;
   message?: string;
 };
 
@@ -19,25 +19,29 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormData) => {
     console.log("Form data:", data);
-    // In production, send to API
     setIsSubmitted(true);
   };
 
   if (isSubmitted) {
     return (
-      <section id="contact" className="py-20 px-6 bg-[#A8B89E]">
-        <div className="max-w-2xl mx-auto text-center text-white">
+      <section id="contact" className="py-32 px-6 bg-forest">
+        <div className="max-w-2xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="text-6xl mb-4">✓</div>
-            <h2 className="text-3xl font-light mb-4">Thank You!</h2>
-            <p className="text-lg mb-6">
-              We'll contact you within 24 hours to schedule your free consultation.
+            <h2 className="font-display text-4xl text-warm-paper mb-6">
+              We'll call you tomorrow
+            </h2>
+            <p className="text-lg text-aged-brass breathing mb-8">
+              Someone from Mori will contact you within 24 hours to schedule your consultation.
             </p>
-            <p className="text-sm opacity-90">
-              Prefer to chat now? WhatsApp us at +852 1234 5678
+            <p className="text-sm text-pale-stone">
+              Need to talk sooner?{" "}
+              <a href="https://wa.me/85212345678" className="underline hover:text-aged-brass transition-colors">
+                WhatsApp +852 1234 5678
+              </a>
             </p>
           </motion.div>
         </div>
@@ -46,19 +50,19 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="py-20 px-6 bg-gray-50">
+    <section id="contact" className="py-32 px-6 bg-pale-stone">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-light mb-4">
-            Book Your Free Consultation
+          <h2 className="font-display text-4xl md:text-5xl text-forest mb-6">
+            Book consultation
           </h2>
-          <p className="text-gray-600">
-            No obligation. Just honest advice about your renovation.
+          <p className="text-lg text-moss breathing">
+            Free, no obligation. We'll answer your questions and show you similar projects. Takes about an hour.
           </p>
         </motion.div>
 
@@ -67,118 +71,116 @@ export default function ContactForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white p-8 rounded-lg shadow-lg"
+          className="space-y-8"
         >
-          <div className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-ink mb-2">
+              Your name
+            </label>
+            <input
+              {...register("name", { required: "Name is required" })}
+              type="text"
+              className="w-full px-4 py-4 bg-warm-paper border border-aged-brass/30 text-ink focus:outline-none focus:border-forest transition-colors"
+              placeholder="Sarah Chen"
+            />
+            {errors.name && (
+              <p className="mt-2 text-sm text-forest">{errors.name.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-ink mb-2">
+              Phone or WhatsApp
+            </label>
+            <input
+              {...register("phone", { required: "Phone is required" })}
+              type="tel"
+              className="w-full px-4 py-4 bg-warm-paper border border-aged-brass/30 text-ink focus:outline-none focus:border-forest transition-colors"
+              placeholder="9123 4567"
+            />
+            {errors.phone && (
+              <p className="mt-2 text-sm text-forest">{errors.phone.message}</p>
+            )}
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Your Name *
+              <label className="block text-sm font-medium text-ink mb-2">
+                Flat size (sq ft)
               </label>
               <input
-                {...register("name", { required: "Name is required" })}
+                {...register("flatSize", { required: "Flat size is required" })}
                 type="text"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A8B89E] focus:border-transparent outline-none"
-                placeholder="e.g. Sarah Chen"
+                className="w-full px-4 py-4 bg-warm-paper border border-aged-brass/30 text-ink focus:outline-none focus:border-forest transition-colors"
+                placeholder="520"
               />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+              {errors.flatSize && (
+                <p className="mt-2 text-sm text-forest">{errors.flatSize.message}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Phone / WhatsApp *
-              </label>
-              <input
-                {...register("phone", { required: "Phone is required" })}
-                type="tel"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A8B89E] focus:border-transparent outline-none"
-                placeholder="e.g. 9123 4567"
-              />
-              {errors.phone && (
-                <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
-              )}
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Flat Size (sq ft) *
-                </label>
-                <input
-                  {...register("flatSize", { required: "Flat size is required" })}
-                  type="text"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A8B89E] focus:border-transparent outline-none"
-                  placeholder="e.g. 520"
-                />
-                {errors.flatSize && (
-                  <p className="mt-1 text-sm text-red-600">{errors.flatSize.message}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Start Date *
-                </label>
-                <select
-                  {...register("startDate", { required: "Start date is required" })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A8B89E] focus:border-transparent outline-none"
-                >
-                  <option value="">Select timing</option>
-                  <option value="asap">ASAP (1-2 months)</option>
-                  <option value="3-6months">3-6 months</option>
-                  <option value="planning">Just planning</option>
-                </select>
-                {errors.startDate && (
-                  <p className="mt-1 text-sm text-red-600">{errors.startDate.message}</p>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Budget Range (optional)
+              <label className="block text-sm font-medium text-ink mb-2">
+                When do you want to start
               </label>
               <select
-                {...register("budget")}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A8B89E] focus:border-transparent outline-none"
+                {...register("startDate", { required: "Start date is required" })}
+                className="w-full px-4 py-4 bg-warm-paper border border-aged-brass/30 text-ink focus:outline-none focus:border-forest transition-colors"
               >
-                <option value="">Prefer not to say</option>
-                <option value="400-600k">HK$400K - 600K</option>
-                <option value="600-800k">HK$600K - 800K</option>
-                <option value="800k+">HK$800K+</option>
+                <option value="">Choose timing</option>
+                <option value="1-2months">1–2 months</option>
+                <option value="3-6months">3–6 months</option>
+                <option value="planning">Just planning</option>
               </select>
+              {errors.startDate && (
+                <p className="mt-2 text-sm text-forest">{errors.startDate.message}</p>
+              )}
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Anything else? (optional)
-              </label>
-              <textarea
-                {...register("message")}
-                rows={3}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A8B89E] focus:border-transparent outline-none resize-none"
-                placeholder="e.g. I love minimalist Japanese design and need help with a small bedroom..."
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-[#A8B89E] text-white py-4 rounded-lg font-medium hover:bg-[#96a68c] transition-colors"
-            >
-              Book Free Consultation
-            </button>
-
-            <p className="text-center text-sm text-gray-500">
-              Or WhatsApp us directly at{" "}
-              <a
-                href="https://wa.me/85212345678"
-                className="text-[#A8B89E] hover:underline"
-              >
-                +852 1234 5678
-              </a>
-            </p>
           </div>
+
+          <div>
+            <label className="block text-sm font-medium text-ink mb-2">
+              Budget (optional)
+            </label>
+            <select
+              {...register("budget")}
+              className="w-full px-4 py-4 bg-warm-paper border border-aged-brass/30 text-ink focus:outline-none focus:border-forest transition-colors"
+            >
+              <option value="">Prefer not to say</option>
+              <option value="400-600k">HK$400K–600K</option>
+              <option value="600-800k">HK$600K–800K</option>
+              <option value="800k+">HK$800K+</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-ink mb-2">
+              Anything else (optional)
+            </label>
+            <textarea
+              {...register("message")}
+              rows={4}
+              className="w-full px-4 py-4 bg-warm-paper border border-aged-brass/30 text-ink focus:outline-none focus:border-forest transition-colors resize-none"
+              placeholder="Small bedroom needs clever storage..."
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-forest text-warm-paper py-5 text-base font-medium hover:bg-moss transition-colors duration-300"
+          >
+            Book consultation — it's free
+          </button>
+
+          <p className="text-center text-sm text-moss">
+            Or{" "}
+            <a
+              href="https://wa.me/85212345678"
+              className="underline hover:text-forest transition-colors"
+            >
+              message on WhatsApp
+            </a>
+          </p>
         </motion.form>
       </div>
     </section>
