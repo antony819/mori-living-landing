@@ -56,19 +56,18 @@ export default function Instead() {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
-    let scrollPosition = 0;
     let animationFrameId: number;
     let isPaused = false;
 
     const autoScroll = () => {
       if (!isPaused && scrollContainer) {
-        scrollPosition += 0.5;
+        scrollContainer.scrollLeft += 0.8;
         
-        if (scrollPosition >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
-          scrollPosition = 0;
+        // When scrolled halfway through the duplicated content, reset to start
+        const maxScroll = scrollContainer.scrollWidth / 2;
+        if (scrollContainer.scrollLeft >= maxScroll) {
+          scrollContainer.scrollLeft = 0;
         }
-        
-        scrollContainer.scrollLeft = scrollPosition;
       }
       animationFrameId = requestAnimationFrame(autoScroll);
     };
@@ -99,6 +98,9 @@ export default function Instead() {
     };
   }, []);
 
+  // Duplicate projects for infinite scroll
+  const duplicatedProjects = [...projects, ...projects];
+
   return (
     <section className="relative py-32">
       <div className="max-w-7xl mx-auto px-6 mb-16">
@@ -120,20 +122,13 @@ export default function Instead() {
           ref={scrollRef}
           className="overflow-x-auto overflow-y-hidden scrollbar-hide cursor-grab active:cursor-grabbing"
         >
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+          <div
             className="flex gap-6 px-6 md:px-12 pb-8"
             style={{ width: "max-content" }}
           >
-            {projects.map((project, index) => (
-              <motion.figure
-                key={project.image}
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ delay: index * 0.08, duration: 0.6 }}
+            {duplicatedProjects.map((project, index) => (
+              <div
+                key={`${project.image}-${index}`}
                 className="flex-shrink-0 w-[85vw] md:w-[480px]"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-pale-stone group">
@@ -151,9 +146,9 @@ export default function Instead() {
                   </p>
                   <p className="font-display text-2xl text-forest">{project.title}</p>
                 </figcaption>
-              </motion.figure>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         <div className="absolute left-0 top-0 bottom-8 w-12 bg-gradient-to-r from-warm-paper to-transparent pointer-events-none" />
