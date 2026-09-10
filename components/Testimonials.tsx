@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -9,6 +10,7 @@ const testimonials = [
     location: "Sai Ying Pun",
     size: "520 sq ft",
     cost: "HK$580K",
+    bgImage: "/images/testimonial-1.jpg",
   },
   {
     quote: "The quote was HK$820K. The final invoice was HK$820K. No surprises, no 'unforeseen issues'. They said 10 weeks, it took 10 weeks.",
@@ -16,6 +18,7 @@ const testimonials = [
     location: "Taikoo Shing",
     size: "680 sq ft",
     cost: "HK$820K",
+    bgImage: "/images/testimonial-2.jpg",
   },
   {
     quote: "First flat, first renovation. I didn't know where to start. My designer explained every decision: why this tile, why that layout. I understood everything.",
@@ -23,6 +26,7 @@ const testimonials = [
     location: "Quarry Bay",
     size: "450 sq ft",
     cost: "HK$750K",
+    bgImage: "/images/testimonial-3.jpg",
   },
 ];
 
@@ -52,16 +56,28 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="border-t border-aged-brass/30 pt-8"
+              className="relative overflow-hidden rounded-lg"
             >
-              <p className="font-display text-2xl md:text-3xl text-forest mb-8 breathing leading-relaxed">
-                "{testimonial.quote}"
-              </p>
-              <div className="flex flex-wrap gap-6 text-sm text-moss">
-                <span className="font-medium text-ink">{testimonial.name}</span>
-                <span>{testimonial.location}</span>
-                <span>{testimonial.size}</span>
-                <span className="text-aged-brass">{testimonial.cost}</span>
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src={testimonial.bgImage}
+                  alt=""
+                  fill
+                  className="object-cover opacity-30"
+                  sizes="(max-width: 768px) 100vw, 800px"
+                />
+              </div>
+              
+              <div className="relative z-10 p-8 md:p-12 bg-warm-paper/60 backdrop-blur-sm">
+                <p className="font-display text-2xl md:text-3xl text-forest mb-8 breathing leading-relaxed">
+                  "{testimonial.quote}"
+                </p>
+                <div className="flex flex-wrap gap-6 text-sm text-moss border-t border-aged-brass/30 pt-6">
+                  <span className="font-medium text-ink">{testimonial.name}</span>
+                  <span>{testimonial.location}</span>
+                  <span>{testimonial.size}</span>
+                  <span className="text-aged-brass">{testimonial.cost}</span>
+                </div>
               </div>
             </motion.div>
           ))}
