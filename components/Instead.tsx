@@ -159,12 +159,6 @@ export default function Instead() {
         <div className="absolute left-0 top-0 bottom-8 w-12 bg-gradient-to-r from-warm-paper to-transparent pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-8 w-12 bg-gradient-to-l from-warm-paper to-transparent pointer-events-none" />
       </div>
-
-      <div className="text-center mt-12 px-6">
-        <p className="text-sm text-moss">
-          Hover to pause · Drag to explore
-        </p>
-      </div>
     </section>
   );
 }
