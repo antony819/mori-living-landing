@@ -158,16 +158,6 @@ See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for detailed instructions.
 
 ---
 
-## 📸 Screenshots
-
-- Desktop: Full hero + portfolio scroll
-- Mobile: Responsive layout
-- Testimonials: Full-width with photo backgrounds
-
-See [`docs/SCREENSHOTS.md`](docs/SCREENSHOTS.md) for screenshot guide.
-
----
-
 ## ⚙️ Configuration
 
 ### Environment Variables
