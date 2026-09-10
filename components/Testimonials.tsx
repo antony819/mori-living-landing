@@ -32,13 +32,12 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-32 px-6 bg-pale-stone">
-      <div className="max-w-5xl mx-auto">
+    <section className="py-32">
+      <div className="max-w-7xl mx-auto px-6 mb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-20"
         >
           <h2 className="font-display text-4xl md:text-5xl text-forest mb-6">
             What people say
@@ -47,42 +46,43 @@ export default function Testimonials() {
             Three recent projects. All first-time renovators.
           </p>
         </motion.div>
+      </div>
 
-        <div className="space-y-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="relative overflow-hidden rounded-lg"
-            >
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src={testimonial.bgImage}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 900px"
-                />
-                <div className="absolute inset-0 bg-warm-paper/85 backdrop-blur-sm" />
+      <div className="space-y-0">
+        {testimonials.map((testimonial, index) => (
+          <motion.div
+            key={testimonial.name}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className="relative w-full min-h-[400px] md:min-h-[500px] flex items-center"
+          >
+            <div className="absolute inset-0 z-0">
+              <Image
+                src={testimonial.bgImage}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="100vw"
+                priority={index === 0}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-warm-paper/95 via-warm-paper/90 to-transparent" />
+            </div>
+            
+            <div className="relative z-10 w-full max-w-4xl mx-auto px-6 md:px-12 py-12 md:py-16">
+              <p className="font-display text-2xl md:text-3xl text-forest mb-8 breathing leading-relaxed max-w-2xl">
+                "{testimonial.quote}"
+              </p>
+              <div className="flex flex-wrap gap-6 text-sm text-moss border-t border-aged-brass/30 pt-6 max-w-2xl">
+                <span className="font-medium text-ink">{testimonial.name}</span>
+                <span>{testimonial.location}</span>
+                <span>{testimonial.size}</span>
+                <span className="text-aged-brass">{testimonial.cost}</span>
               </div>
-              
-              <div className="relative z-10 p-8 md:p-12">
-                <p className="font-display text-2xl md:text-3xl text-forest mb-8 breathing leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-                <div className="flex flex-wrap gap-6 text-sm text-moss border-t border-aged-brass/30 pt-6">
-                  <span className="font-medium text-ink">{testimonial.name}</span>
-                  <span>{testimonial.location}</span>
-                  <span>{testimonial.size}</span>
-                  <span className="text-aged-brass">{testimonial.cost}</span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
