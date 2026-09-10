@@ -10,7 +10,7 @@ const testimonials = [
     location: "Sai Ying Pun",
     size: "520 sq ft",
     cost: "HK$580K",
-    bgImage: "/images/testimonial-1.jpg",
+    bgImage: "/images/project-1.jpg",
   },
   {
     quote: "The quote was HK$820K. The final invoice was HK$820K. No surprises, no 'unforeseen issues'. They said 10 weeks, it took 10 weeks.",
@@ -18,7 +18,7 @@ const testimonials = [
     location: "Taikoo Shing",
     size: "680 sq ft",
     cost: "HK$820K",
-    bgImage: "/images/testimonial-2.jpg",
+    bgImage: "/images/project-2.jpg",
   },
   {
     quote: "First flat, first renovation. I didn't know where to start. My designer explained every decision: why this tile, why that layout. I understood everything.",
@@ -26,13 +26,13 @@ const testimonials = [
     location: "Quarry Bay",
     size: "450 sq ft",
     cost: "HK$750K",
-    bgImage: "/images/testimonial-3.jpg",
+    bgImage: "/images/project-4.jpg",
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section className="py-32 px-6">
+    <section className="py-32 px-6 bg-pale-stone">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,7 +48,7 @@ export default function Testimonials() {
           </p>
         </motion.div>
 
-        <div className="space-y-16">
+        <div className="space-y-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
@@ -63,12 +63,13 @@ export default function Testimonials() {
                   src={testimonial.bgImage}
                   alt=""
                   fill
-                  className="object-cover opacity-30"
-                  sizes="(max-width: 768px) 100vw, 800px"
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 900px"
                 />
+                <div className="absolute inset-0 bg-warm-paper/85 backdrop-blur-sm" />
               </div>
               
-              <div className="relative z-10 p-8 md:p-12 bg-warm-paper/60 backdrop-blur-sm">
+              <div className="relative z-10 p-8 md:p-12">
                 <p className="font-display text-2xl md:text-3xl text-forest mb-8 breathing leading-relaxed">
                   "{testimonial.quote}"
                 </p>
