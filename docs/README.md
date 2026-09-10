@@ -26,7 +26,6 @@ Welcome to the Mori Living landing page documentation. This folder contains all 
 | Document | Purpose | Audience |
 |----------|---------|----------|
 | [`DEPLOYMENT.md`](DEPLOYMENT.md) | Deploy to Vercel/other hosts | DevOps |
-| [`SCREENSHOTS.md`](SCREENSHOTS.md) | How to capture screenshots | Marketing |
 
 ---
 
@@ -37,7 +36,6 @@ Welcome to the Mori Living landing page documentation. This folder contains all 
 - 🎨 **Understand design choices?** → Read [`DESIGN-RATIONALE.md`](DESIGN-RATIONALE.md)
 - 🖼️ **Generate similar images?** → Use prompts from [`AI-IMAGE-PROMPTS.md`](AI-IMAGE-PROMPTS.md)
 - 🚀 **Deploy the site?** → Follow [`DEPLOYMENT.md`](DEPLOYMENT.md)
-- 📸 **Take screenshots?** → See [`SCREENSHOTS.md`](SCREENSHOTS.md)
 
 ---
 
@@ -121,15 +119,6 @@ Step-by-step guide to deploy on Vercel, Netlify, or custom hosting.
 - Environment variables
 - Custom domain setup
 - Troubleshooting
-
-### SCREENSHOTS.md
-Instructions for capturing professional screenshots for portfolio/submission.
-
-**Key sections:**
-- Tools & setup
-- Desktop screenshots
-- Mobile screenshots
-- Annotation guide
 
 ---
 
