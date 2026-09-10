@@ -2,7 +2,7 @@
 
 A professional landing page for Mori Living, a Japanese-inspired interior design studio in Hong Kong. Built with Next.js 14, TypeScript, and Tailwind CSS v4.
 
-![Hero Screenshot](https://via.placeholder.com/1200x600/2B3A2E/FFFFFF?text=Mori+Living)
+![Mori Living Landing Page](./public/images/screenshot.png)
 
 ---
 
