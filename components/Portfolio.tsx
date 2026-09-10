@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const projects = [
   {
@@ -9,28 +8,28 @@ const projects = [
     size: "420 sq ft",
     budget: "HK$480K",
     description: "Compact studio transformed with hidden storage and multi-functional furniture",
-    image: "/images/project-1.jpg",
+    gradient: "from-[#A8B89E] to-[#D4A574]",
   },
   {
     title: "Taikoo Shing 2BR",
     size: "680 sq ft",
     budget: "HK$820K",
     description: "Open-plan living with Japanese sliding doors and natural wood accents",
-    image: "/images/project-2.jpg",
+    gradient: "from-[#D4A574] to-[#A8B89E]",
   },
   {
     title: "Mid-Levels Flat",
     size: "550 sq ft",
     budget: "HK$1.1M",
     description: "Minimalist sanctuary with custom joinery and integrated lighting",
-    image: "/images/project-3.jpg",
+    gradient: "from-[#96a68c] to-[#c4b596]",
   },
   {
     title: "Kennedy Town 1BR",
     size: "480 sq ft",
     budget: "HK$580K",
     description: "Clever space division creating distinct zones without walls",
-    image: "/images/project-4.jpg",
+    gradient: "from-[#c4b596] to-[#96a68c]",
   },
 ];
 
@@ -62,8 +61,8 @@ export default function Portfolio() {
               transition={{ delay: index * 0.1 }}
               className="group cursor-pointer"
             >
-              <div className="relative aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden mb-4">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 group-hover:to-black/70 transition-colors" />
+              <div className={`relative aspect-[4/3] bg-gradient-to-br ${project.gradient} rounded-lg overflow-hidden mb-4 transition-transform group-hover:scale-[1.02]`}>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 group-hover:to-black/80 transition-colors" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                   <div className="text-sm mb-1 opacity-90">
                     {project.size} · {project.budget}
@@ -84,7 +83,7 @@ export default function Portfolio() {
         >
           <a
             href="#contact"
-            className="inline-block text-[#A8B89E] hover:text-[#96a68c] font-medium"
+            className="inline-block text-[#A8B89E] hover:text-[#96a68c] font-medium transition-colors"
           >
             See your home here? Let's talk →
           </a>
